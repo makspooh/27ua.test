@@ -6,10 +6,10 @@ function validateColor(hex) {
     if (Array.isArray(hex)) {
         for (let i = 0; i < hex.length; i++) {
             valideHex.push(hex[i].substring(1).toUpperCase());
-        };
+        }
     } else {
         valideHex.push(hex.substring(1).toUpperCase());
-    };
+    }
 
     for (let i = 0; i < valideHex.length; i++) {
         for (let j = 0; j < valideHex[i].length; j++) {
@@ -18,16 +18,16 @@ function validateColor(hex) {
             if (!valideSymbols.includes(symb) || string.length != 6 && string.length != 3) {
                 valideHex.splice(i, 1);
                 i--;
-            };
-        };
-    };
+            }
+        }
+    }
 
     for (let i = 0; i < valideHex.length; i++) {
         let string = valideHex[i];
         if (string.length === 3) {
             valideHex[i] = string[0] + string[0] + string[1] + string[1] + string[2] + string[2];
-        };
-    };
+        }
+    }
 
     for (let i = 0; i < valideHex.length; i++) {
         for (let j = 0; j < valideHex[i].length; j++) {
@@ -48,11 +48,11 @@ function validateColor(hex) {
                 'D': '2',
                 'E': '1',
                 'F': '0'
-            };
+            }
             valideHex[i] = valideHex[i].replace(valideHex[i][j], negativeObj[valideHex[i][j]]);
             negativeHex[i] = '#' + valideHex[i];
-        };
-    };
+        }
+    }
     console.log(negativeHex);
 };
 
