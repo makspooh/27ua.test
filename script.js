@@ -1,42 +1,37 @@
-let valideSymbols = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
-let valideHex = []
-let negativeHex = []
-
-// определяем тип передаваемых данных
-// удаляем знак "#" и переводим в верхний регистр
-// пушим результат в массив 'valideHex'
 function validateColor(hex) {
+    let valideSymbols = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
+    let valideHex = [];
+    let negativeHex = [];
+
     if (Array.isArray(hex)) {
         for (let i = 0; i < hex.length; i++) {
-            valideHex.push(hex[i].substring(1).toUpperCase())
-        }
+            valideHex.push(hex[i].substring(1).toUpperCase());
+        };
     } else {
-        valideHex.push(hex.substring(1).toUpperCase())
-    }
+        valideHex.push(hex.substring(1).toUpperCase());
+    };
 
-// проверяем данные на валидность путём сравнивания с массивом валидных символов
-// удаляем элементы, в которых присутствуют невалидные символы, либо длина которых превышает 6
     for (let i = 0; i < valideHex.length; i++) {
         for (let j = 0; j < valideHex[i].length; j++) {
-            if (!valideSymbols.includes(valideHex[i][j].toLowerCase()) || valideHex[i].length > 6) {
-                valideHex.splice(i, 1)
-                i--
-            }
-        }
-    }
+            let string = valideHex[i];
+            let symb = valideHex[i][j];
+            if (!valideSymbols.includes(symb) || string.length != 6 && string.length != 3) {
+                valideHex.splice(i, 1);
+                i--;
+            };
+        };
+    };
 
-// если длина строки == 3 - тогда дублируем каждый элемент
     for (let i = 0; i < valideHex.length; i++) {
-        if (valideHex[i].length === 3) {
-            valideHex[i] = valideHex[i][0] + valideHex[i][0] + valideHex[i][1] + valideHex[i][1] + valideHex[i][2] + valideHex[i][2]
-        }
-    }
+        let string = valideHex[i];
+        if (string.length === 3) {
+            valideHex[i] = string[0] + string[0] + string[1] + string[1] + string[2] + string[2];
+        };
+    };
 
-// приводим цвет к негативу, добавляем в начало строки знак "#"
-// переносим элементы из 'valideHex' в 'negativeHex'
     for (let i = 0; i < valideHex.length; i++) {
         for (let j = 0; j < valideHex[i].length; j++) {
-            var negativeObj = {
+            let negativeObj = {
                 '0': 'F',
                 '1': 'E',
                 '2': 'D',
@@ -53,12 +48,12 @@ function validateColor(hex) {
                 'D': '2',
                 'E': '1',
                 'F': '0'
-            }
-            valideHex[i] = valideHex[i].replace(valideHex[i][j], negativeObj[valideHex[i][j]])
-            negativeHex[i] = '#' + valideHex[i]
-        }
-    }
+            };
+            valideHex[i] = valideHex[i].replace(valideHex[i][j], negativeObj[valideHex[i][j]]);
+            negativeHex[i] = '#' + valideHex[i];
+        };
+    };
     console.log(negativeHex);
-}
+};
 
-validateColor('#000', '#fffffff')
+validateColor(['#000', '#ppp', '#ffff']);
