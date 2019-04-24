@@ -54,6 +54,6 @@ function validateColor(hex) {
         }
     }
     console.log(negativeHex);
-};
+}
 
 validateColor(['#000', '#ppp', '#ffff']);
