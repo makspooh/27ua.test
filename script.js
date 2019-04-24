@@ -15,7 +15,7 @@ function validateColor(hex) {
         for (let j = 0; j < valideHex[i].length; j++) {
             let string = valideHex[i];
             let symb = valideHex[i][j];
-            if (!valideSymbols.includes(symb) || string.length != 6 && string.length != 3) {
+            if (!valideSymbols.includes(symb) || string.length !== 6 && string.length !== 3) {
                 valideHex.splice(i, 1);
                 i--;
             }
